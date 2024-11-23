@@ -1,4 +1,4 @@
 (library
 (name dom)
-(modules core components)
-(libraries bastet dream-html))
+(modules core components footer header)
+(libraries bastet dream-html pages))

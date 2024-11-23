@@ -2,3 +2,4 @@ node_modules
 _build
 _opam
 .clj-kondo
+assets/public/css/output.css

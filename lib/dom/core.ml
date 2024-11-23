@@ -1,10 +1,17 @@
 module B = Bastet
 module C = Components
+module D = Dream_html
+module H = Dream_html.HTML
+module P = Pages.Tales
+
+module Pages = struct
+  module Config = Footer.Config
+  module Header = Header.Title
+
+  let main_template = H.div [] [ Header.element; P.Post.text; Config.element ]
+end
 
 module Navbar = struct
-  module D = Dream_html
-  module H = Dream_html.HTML
-
   let column_names =
     [ "Home"; "Round and Unvarnished Tales"; "Refactory Methods" ]
 
@@ -46,7 +53,7 @@ module Navbar = struct
           "bg-base-100";
           "rounded-box";
           "z-[1]";
-          "w-52";
+          "w-64";
           "p-2";
           "shadow";
         ]
@@ -55,12 +62,13 @@ module Navbar = struct
     H.ul classes
 
   let dropdown_parent links =
-    H.div [ H.class_ "dropdown" ] [ H.summary [] [ hamburger; links ] ]
+    H.details
+      [ H.class_ "dropdown" ]
+      [ H.summary [ H.class_ "btn m-1" ] [ hamburger ]; links ]
 
   let dropdown_el =
     let hmb = dropdown_parent @@ dropdown_list (make_li (dropdown "Home")) in
-    let details children = H.details [ H.class_ "dropdown" ] children in
-    C.div [ "navbar"; "bg-base-100" ] [ details [ hmb ] ]
+    C.div [ "navbar"; "bg-base-100" ] [ hmb ]
 
   let html =
     H.html
@@ -68,15 +76,6 @@ module Navbar = struct
       [
         H.head []
           [ H.link [ H.rel "stylesheet"; H.href "static/css/output.css" ] ];
-        H.body []
-          [
-            dropdown_el;
-            H.input
-              [
-                H.type_ "checkbox";
-                H.value "aqua";
-                H.class_ "toggle theme-controller";
-              ];
-          ];
+        H.body [] [ dropdown_el; Pages.main_template ];
       ]
 end

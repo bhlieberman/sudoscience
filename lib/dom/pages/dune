@@ -1,0 +1,4 @@
+(library
+ (name pages)
+ (modules tales methods main)
+ (libraries dream-html))
