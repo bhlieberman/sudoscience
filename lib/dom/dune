@@ -1,0 +1,4 @@
+(library
+(name dom)
+(modules core components)
+(libraries bastet dream-html))

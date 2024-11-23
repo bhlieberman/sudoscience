@@ -1,0 +1,4 @@
+(executable
+ (public_name sudoscience)
+ (name main)
+ (libraries sudoscience dream))
