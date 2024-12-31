@@ -6,6 +6,8 @@
 	import AppSidebar from '$lib/components/app-sidebar.svelte';
 	import '../app.css';
 	let { children } = $props();
+
+	export const prerender = true;
 </script>
 
 <ParaglideJS {i18n}>
